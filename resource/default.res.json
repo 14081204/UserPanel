@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,egret_icon_png,description_json,Shoes_jpg,Helment_jpg,LightArmor_jpg,Weapon_jpg,01_png,02_png,Informationbg_png,Detailbg_png",
+			"keys": "bg_jpg,egret_icon_png,description_json,Shoes_jpg,Helment_jpg,LightArmor_jpg,Weapon_jpg,01_png,02_png,Informationbg_png,Detailbg_png,Informationbg1_png,bg1_jpg",
 			"name": "preload"
 		}
 	],
@@ -60,6 +60,16 @@
 			"name": "Detailbg_png",
 			"type": "image",
 			"url": "assets/Detailbg.png"
+		},
+		{
+			"name": "Informationbg1_png",
+			"type": "image",
+			"url": "assets/Informationbg1.png"
+		},
+		{
+			"name": "bg1_jpg",
+			"type": "image",
+			"url": "assets/bg1.jpg"
 		}
 	]
 }

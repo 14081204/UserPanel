@@ -125,7 +125,7 @@ class Main extends egret.DisplayObjectContainer {
      * Create a game scene
      */
     private createGameScene():void {
-        var sky:egret.Bitmap = this.createBitmapByName("bg_jpg");
+        var sky:egret.Bitmap = this.createBitmapByName("bg1_jpg");
         this.addChild(sky);
         var stageW:number = this.stage.stageWidth;
         var stageH:number = this.stage.stageHeight;
@@ -133,11 +133,11 @@ class Main extends egret.DisplayObjectContainer {
         sky.height = stageH;
 
         this.user = new User(100, 1000, 1, 1000, "Player01");
-        this.hero = new Hero("01", "HeroPicture", "Hero01", 1000, 1000, 100, 50, 1, 30, 200, 500);
-        this.sword = new Weapon("001", "Sword01", 20, "sword", WeaponsType.sword);
-        this.helment = new Armor("101", "Helment01", 50, "lightArmor", ArmorsType.lightarmor);
-        this.lightArmor = new Armor("102", "LightArmor01", 50, "lightArmor", ArmorsType.lightarmor);
-        this.shoes = new Armor("103", "Shoes01", 50, "lightArmor", ArmorsType.lightarmor);
+        this.hero = new Hero("01", "02_png", "Hero01", 1000, 1000, 100, 50, 1, 30, 200, 500);
+        this.sword = new Weapon("001", "Weapon_jpg", 20, "sword", WeaponsType.sword);
+        this.helment = new Armor("101", "Helment_jpg", 50, "helment", ArmorsType.lightarmor);
+        this.lightArmor = new Armor("102", "LightArmor_jpg", 50, "lightArmor", ArmorsType.lightarmor);
+        this.shoes = new Armor("103", "Shoes_jpg", 50, "shoes", ArmorsType.lightarmor);
         this.weaponJewel = new Jewel(jewelLevel.one, 20, 50, 15);
         this.armorJewel = new Jewel(jewelLevel.three, 50, 20, 10);
          
@@ -145,10 +145,14 @@ class Main extends egret.DisplayObjectContainer {
         this.helment.addJewel(this.armorJewel);
         this.lightArmor.addJewel(this.armorJewel);
         this.shoes.addJewel(this.armorJewel);
-        this.hero.addWeaponsEquipment(this.sword);
+        /*this.hero.addWeaponsEquipment(this.sword);
         this.hero.addArmorEquipment(this.helment);
         this.hero.addArmorEquipment(this.lightArmor);
-        this.hero.addArmorEquipment(this.shoes);
+        this.hero.addArmorEquipment(this.shoes);*/
+        this.hero.addWeapon(this.sword);
+        this.hero.addHelment(this.helment);
+        this.hero.addLightarmor(this.lightArmor);
+        this.hero.addShoes(this.shoes);
         this.user.addHero(this.hero);
 
         /*console.log("hero attack :" + this.hero.getAttack());
@@ -163,10 +167,13 @@ class Main extends egret.DisplayObjectContainer {
 
         this.userPanel = new UserPanel();
         this.addChild(this.userPanel);
-        //this.userPanel.showHeroInformation(this.hero);
+        this.userPanel.showHeroInformation(this.hero);
         this.userPanel.x = (this.stage.width - this.userPanel.width) / 2;
         this.userPanel.y = (this.stage.height - this.userPanel.height) / 2;
-        //this.userPanel.equipmentInformationPanel.showEquipmentInformation(this.sword);
+        this.userPanel.equipmentInformationPanel.showEquipmentInformation(this.sword);
+        /*this.userPanel.equipmentInformationPanel.showEquipmentInformation(this.helment);
+        this.userPanel.equipmentInformationPanel.showEquipmentInformation(this.lightArmor);
+        this.userPanel.equipmentInformationPanel.showEquipmentInformation(this.shoes);*/
     }
 
     /**

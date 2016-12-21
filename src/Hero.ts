@@ -157,8 +157,8 @@ class Hero{
     @Cache
     getDefence(){
         var result = 0;
-        this.armorEquipment.forEach(armor => result += armor.getDefence() * 0.8);
-        result += this.level * 10;
+        this.armorEquipment.forEach(armor => result += armor.getDefence() * 0.6);
+        result += this.level * 2;
         this.properties[2]=new Property("防御力",result,false);
         return result;
     }
@@ -169,7 +169,7 @@ class Hero{
         this.weaponsEquipment.forEach(weapon => result += weapon.getSpeed() * 0.4);
         this.armorEquipment.forEach(armor => result += armor.getSpeed() * 0.4);
         result += this.level * 5;
-        this.properties[3]=new Property("敏捷",result,false);
+        this.properties[3]=new Property("速度",result,false);
         return result;
     }
 
@@ -182,13 +182,13 @@ class Hero{
         return result;
     }
 
-    public addArmorEquipment(equipment : Armor){
+    /*public addArmorEquipment(equipment : Armor){
         this.armorEquipment.push(equipment);
     }
 
     public addWeaponsEquipment(equipment : Weapon){
         this.weaponsEquipment.push(equipment);
-    }
+    }*/
 }
 
 class Equipment{
@@ -250,7 +250,7 @@ class Weapon extends Equipment{
      getSpeed(){
          var result = 0;
          this.jewelsEquipment.forEach(jewel => result += jewel.getFightPower() * 0.8 * jewel.level / this.weaponType);
-         this.properties[1]=new Property("敏捷",result,false);
+         this.properties[1]=new Property("速度",result,false);
          return result;
      }
 
@@ -258,7 +258,7 @@ class Weapon extends Equipment{
      get attackBoost(){
         var result = 0;
         this.jewelsEquipment.forEach(e => result += e.attackBoost);
-        this.properties[2]=new Property("暴击",result,false);
+        //this.properties[2]=new Property("暴击",result,false);
         return result;//
      }
 
@@ -300,7 +300,7 @@ class Armor extends Equipment{
      getDefence(){
          var result = 0;
          this.jewelsEquipment.forEach(jewel => result += jewel.getFightPower() * 0.4 * jewel.level);
-         result += 4 * this.armorType; 
+         result += 2 * this.armorType; 
          this.properties[0]=new Property("防御力",result,false);
          return result;
      }
@@ -309,7 +309,7 @@ class Armor extends Equipment{
      getSpeed(){
          var result = 0;
          this.jewelsEquipment.forEach(jewel => result += jewel.getFightPower() * 0.4 * jewel.level / this.armorType);
-         this.properties[0]=new Property("防御力",result,false);
+         this.properties[1]=new Property("速度",result,false);
          return result;
      }
 
@@ -348,17 +348,17 @@ class Jewel{
 
     get DefencePromote(){
 
-        return this.defencePromote * this.level;
+        return this.defencePromote * this.level * 0.2;
     }
 
     get SpeedPromote(){
 
-        return this.speedPromote * this.level;
+        return this.speedPromote * this.level * 0.3;
     }
 
     get AttackBoost(){
 
-        return this.attackBoost * this.level;
+        return this.attackBoost * this.level * 0.5;
     }
 
     @Cache
@@ -392,9 +392,7 @@ class Properties{
     public all:string[] = [
         "攻击力",
         "防御力",
-        "速度",
-        "暴击",
-        "品质"
+        "速度"
     ]
 
     public getpropertiesName(){

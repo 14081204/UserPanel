@@ -150,8 +150,8 @@ var Hero = (function () {
     };
     p.getDefence = function () {
         var result = 0;
-        this.armorEquipment.forEach(function (armor) { return result += armor.getDefence() * 0.8; });
-        result += this.level * 10;
+        this.armorEquipment.forEach(function (armor) { return result += armor.getDefence() * 0.6; });
+        result += this.level * 2;
         this.properties[2] = new Property("防御力", result, false);
         return result;
     };
@@ -160,7 +160,7 @@ var Hero = (function () {
         this.weaponsEquipment.forEach(function (weapon) { return result += weapon.getSpeed() * 0.4; });
         this.armorEquipment.forEach(function (armor) { return result += armor.getSpeed() * 0.4; });
         result += this.level * 5;
-        this.properties[3] = new Property("敏捷", result, false);
+        this.properties[3] = new Property("速度", result, false);
         return result;
     };
     p.getFightPower = function () {
@@ -169,12 +169,6 @@ var Hero = (function () {
         this.armorEquipment.forEach(function (armor) { return result += armor.getFightPower(); });
         result += (this.getAttack() * 10 + this.getDefence() * 8 + this.getSpeed() * 6) * this.level;
         return result;
-    };
-    p.addArmorEquipment = function (equipment) {
-        this.armorEquipment.push(equipment);
-    };
-    p.addWeaponsEquipment = function (equipment) {
-        this.weaponsEquipment.push(equipment);
     };
     __decorate([
         Cache
@@ -251,7 +245,7 @@ var Weapon = (function (_super) {
         var _this = this;
         var result = 0;
         this.jewelsEquipment.forEach(function (jewel) { return result += jewel.getFightPower() * 0.8 * jewel.level / _this.weaponType; });
-        this.properties[1] = new Property("敏捷", result, false);
+        this.properties[1] = new Property("速度", result, false);
         return result;
     };
     d(p, "attackBoost"
@@ -259,7 +253,7 @@ var Weapon = (function (_super) {
         ,function () {
             var result = 0;
             this.jewelsEquipment.forEach(function (e) { return result += e.attackBoost; });
-            this.properties[2] = new Property("暴击", result, false);
+            //this.properties[2]=new Property("暴击",result,false);
             return result; //
         }
     );
@@ -307,7 +301,7 @@ var Armor = (function (_super) {
     p.getDefence = function () {
         var result = 0;
         this.jewelsEquipment.forEach(function (jewel) { return result += jewel.getFightPower() * 0.4 * jewel.level; });
-        result += 4 * this.armorType;
+        result += 2 * this.armorType;
         this.properties[0] = new Property("防御力", result, false);
         return result;
     };
@@ -315,7 +309,7 @@ var Armor = (function (_super) {
         var _this = this;
         var result = 0;
         this.jewelsEquipment.forEach(function (jewel) { return result += jewel.getFightPower() * 0.4 * jewel.level / _this.armorType; });
-        this.properties[0] = new Property("防御力", result, false);
+        this.properties[1] = new Property("速度", result, false);
         return result;
     };
     p.getFightPower = function () {
@@ -358,17 +352,17 @@ var Jewel = (function () {
     var d = __define,c=Jewel,p=c.prototype;
     d(p, "DefencePromote"
         ,function () {
-            return this.defencePromote * this.level;
+            return this.defencePromote * this.level * 0.2;
         }
     );
     d(p, "SpeedPromote"
         ,function () {
-            return this.speedPromote * this.level;
+            return this.speedPromote * this.level * 0.3;
         }
     );
     d(p, "AttackBoost"
         ,function () {
-            return this.attackBoost * this.level;
+            return this.attackBoost * this.level * 0.5;
         }
     );
     p.getFightPower = function () {
@@ -405,9 +399,7 @@ var Properties = (function () {
         this.all = [
             "攻击力",
             "防御力",
-            "速度",
-            "暴击",
-            "品质"
+            "速度"
         ];
     }
     var d = __define,c=Properties,p=c.prototype;
